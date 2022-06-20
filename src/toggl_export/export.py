@@ -61,10 +61,13 @@ def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
         durations = [entry["duration"] for entry in project_entries]
         spent_time = sum(durations) / 60 / 60  # durations are in seconds
         print(f"{project}: {spent_time}")
+        tasks_set = set()
         for entry in project_entries:
             full_description = entry["description"]
             task_description = full_description[full_description.rfind(" - ") :]
-            print(f"{task_description}")
+            tasks_set.add(task_description)
+        for task in tasks_set:
+            print(f"{task}")
         print("\n")
 
 
