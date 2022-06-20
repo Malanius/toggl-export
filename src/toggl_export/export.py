@@ -71,9 +71,17 @@ def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
         print("\n")
 
 
+def convert_to_eod(date):
+    return datetime.combine(
+        datetime.fromisoformat(date), datetime.max.time()
+    ).isoformat()
+
+
 def main():
     args = init_arguments()
-    entries = get_time_entries(args.start, args.end)
+    start = args.start
+    end = convert_to_eod(args.end)
+    entries = get_time_entries(start, end)
     entries_by_day = group_by_day(entries)
     grouped_entries = {}
     for day, day_entries in entries_by_day.items():
