@@ -63,7 +63,7 @@ def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
         print(f"{project}: {spent_time}")
         for entry in project_entries:
             full_description = entry["description"]
-            task_description = full_description[full_description.find(" - ") :]
+            task_description = full_description[full_description.rfind(" - ") :]
             print(f"{task_description}")
         print("\n")
 
