@@ -7,6 +7,7 @@ import requests
 from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
 
+from toggl_export.arguments import init_arguments
 from toggl_export.models import TimeEntry
 
 load_dotenv()
@@ -68,7 +69,8 @@ def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
 
 
 def main():
-    entries = get_time_entries("2022-04-11", "2022-04-15")
+    args = init_arguments()
+    entries = get_time_entries(args.start, args.end)
     entries_by_day = group_by_day(entries)
     grouped_entries = {}
     for day, day_entries in entries_by_day.items():
