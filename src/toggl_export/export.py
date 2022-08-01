@@ -55,7 +55,7 @@ def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
     print(f"--- {day} ---")
     for project_entries in projects_entries.values():
         project = {
-            entry["description"][: entry["description"].find(" - ")]
+            entry["description"][: entry["description"].find(" | ")]
             for entry in project_entries
         }.pop()
         durations = [entry["duration"] for entry in project_entries]
@@ -64,7 +64,7 @@ def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
         tasks_set = set()
         for entry in project_entries:
             full_description = entry["description"]
-            task_description = full_description[full_description.rfind(" - ") :]
+            task_description = full_description[full_description.rfind(" | ") :]
             tasks_set.add(task_description)
         for task in tasks_set:
             print(f"{task}")
