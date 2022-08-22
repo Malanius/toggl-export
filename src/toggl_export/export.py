@@ -29,10 +29,13 @@ def get_time_entries(start_date, end_date) -> List[TimeEntry]:
         params=range,
         auth=HTTPBasicAuth(TOKEN, "api_token"),
     )
-    # print(f"Url: {request.url}")
-    # print(f"Status: {request.status_code}")
+    print(f"Url: {request.url}")
+    print(f"Status: {request.status_code}")
     if request.ok:
+        print(request.json())
         return request.json()
+    else:
+        request.raise_for_status()
 
 
 def group_by_day(entries: List[TimeEntry]):
