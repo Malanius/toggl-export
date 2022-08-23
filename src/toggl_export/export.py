@@ -32,7 +32,6 @@ def get_time_entries(start_date, end_date) -> List[TimeEntry]:
     print(f"Url: {request.url}")
     print(f"Status: {request.status_code}")
     if request.ok:
-        print(request.json())
         return request.json()
     else:
         request.raise_for_status()
