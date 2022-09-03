@@ -13,10 +13,10 @@ from toggl_export.models import TimeEntry
 
 load_dotenv()
 TOKEN = os.getenv("API_TOKEN")
+PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR")
 
 API_BASE_URL = "https://api.track.toggl.com/api/v8"
 TIME_ENTRIES_ENDPOINT = "time_entries"
-PROJECT_SEPARATOR = " | "
 
 
 def get_time_entries(start_date, end_date) -> List[TimeEntry]:
