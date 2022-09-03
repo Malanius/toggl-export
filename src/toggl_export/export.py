@@ -6,6 +6,7 @@ import os
 import requests
 from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
+from rich import print as rprint
 
 from toggl_export.arguments import init_arguments
 from toggl_export.models import TimeEntry
@@ -15,6 +16,7 @@ TOKEN = os.getenv("API_TOKEN")
 
 API_BASE_URL = "https://api.track.toggl.com/api/v8"
 TIME_ENTRIES_ENDPOINT = "time_entries"
+PROJECT_SEPARATOR = " | "
 
 
 def get_time_entries(start_date, end_date) -> List[TimeEntry]:
@@ -30,10 +32,11 @@ def get_time_entries(start_date, end_date) -> List[TimeEntry]:
         auth=HTTPBasicAuth(TOKEN, "api_token"),
     )
     print(f"Url: {request.url}")
-    print(f"Status: {request.status_code}")
     if request.ok:
+        rprint(f"[green]Status: {request.status_code}")
         return request.json()
     else:
+        rprint(f"[red]Status: {request.status_code}")
         request.raise_for_status()
 
 
@@ -54,19 +57,21 @@ def group_by_project(entries: List[TimeEntry]):
 
 
 def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
-    print(f"--- {day} ---")
+    rprint(f"[yellow bold]--- {day} ---")
     for project_entries in projects_entries.values():
         project = {
-            entry["description"][: entry["description"].find(" | ")]
+            entry["description"][: entry["description"].find(PROJECT_SEPARATOR)]
             for entry in project_entries
         }.pop()
         durations = [entry["duration"] for entry in project_entries]
         spent_time = sum(durations) / 60 / 60  # durations are in seconds
-        print(f"{project}: {spent_time}")
+        rprint(f"[cyan]{project}: {spent_time}h")
         tasks_set = set()
         for entry in project_entries:
             full_description = entry["description"]
-            task_description = full_description[full_description.rfind(" | ") :]
+            task_description = full_description[
+                full_description.rfind(PROJECT_SEPARATOR) :
+            ]
             tasks_set.add(task_description)
         for task in tasks_set:
             print(f"{task}")
