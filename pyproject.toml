@@ -17,3 +17,6 @@ black = {version = "^22.3.0", allow-prereleases = true}
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+export = "toggl_export.export:main"
