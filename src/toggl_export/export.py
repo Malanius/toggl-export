@@ -1,5 +1,7 @@
 from collections import defaultdict
 from datetime import datetime
+from itertools import chain
+from pprint import pprint
 from typing import List
 import os
 
@@ -48,6 +50,10 @@ def group_by_day(entries: List[TimeEntry]):
     return day_entries
 
 
+def calculate_daily_hours(entries: List[TimeEntry]):
+    return sum(entry["duration"] for entry in entries) / 60 / 60
+
+
 def group_by_project(entries: List[TimeEntry]):
     project_entries = defaultdict(list)
     for entry in entries:
@@ -57,7 +63,8 @@ def group_by_project(entries: List[TimeEntry]):
 
 
 def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
-    rprint(f"[yellow bold]--- {day} ---")
+    day_hours = calculate_daily_hours(chain(*projects_entries.values()))
+    rprint(f"[yellow bold]--- {day}: {day_hours}h ---")
     for project_entries in projects_entries.values():
         project = {
             entry["description"][: entry["description"].find(PROJECT_SEPARATOR)]
