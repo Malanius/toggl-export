@@ -16,7 +16,7 @@ from toggl_export.models import TimeEntry
 load_dotenv()
 TOKEN = os.getenv("API_TOKEN")
 PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR")
-WORKSPACE_ID = int(os.getenv("WORKSPACE_ID"))
+WORKSPACE_ID = os.getenv("WORKSPACE_ID")
 
 API_BASE_URL = "https://api.track.toggl.com/api/v9/me"
 TIME_ENTRIES_ENDPOINT = "time_entries"
@@ -43,7 +43,9 @@ def get_time_entries(start_date, end_date) -> List[TimeEntry]:
         request.raise_for_status()
 
 def filter_by_workspace(entries: List[TimeEntry]):
-    return [entry for entry in entries if entry["workspace_id"] == WORKSPACE_ID]
+    if WORKSPACE_ID is None:
+        return entries
+    return [entry for entry in entries if entry["workspace_id"] == int(WORKSPACE_ID)]
 
 def group_by_day(entries: List[TimeEntry]):
     day_entries = defaultdict(list)
