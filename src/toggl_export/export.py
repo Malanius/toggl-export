@@ -1,21 +1,20 @@
-from collections import OrderedDict, defaultdict
+import os
+from collections import defaultdict
 from datetime import datetime
 from itertools import chain
-from pprint import pprint
-from typing import List
-import os
+from typing import Iterable, List
 
 import requests
-from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
+from requests.auth import HTTPBasicAuth
 from rich import print as rprint
 
 from toggl_export.arguments import init_arguments
 from toggl_export.models import TimeEntry
 
 load_dotenv()
-TOKEN = os.getenv("API_TOKEN")
-PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR")
+TOKEN = os.getenv("API_TOKEN") or ""
+PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR") or "|"
 WORKSPACE_ID = os.getenv("WORKSPACE_ID")
 
 API_BASE_URL = "https://api.track.toggl.com/api/v9/me"
@@ -41,11 +40,14 @@ def get_time_entries(start_date, end_date) -> List[TimeEntry]:
     else:
         rprint(f"[red]Status: {request.status_code}")
         request.raise_for_status()
+        raise Exception("Error retrieving time entries!")
+
 
 def filter_by_workspace(entries: List[TimeEntry]):
     if WORKSPACE_ID is None:
         return entries
     return [entry for entry in entries if entry["workspace_id"] == int(WORKSPACE_ID)]
+
 
 def group_by_day(entries: List[TimeEntry]):
     day_entries = defaultdict(list)
@@ -55,7 +57,7 @@ def group_by_day(entries: List[TimeEntry]):
     return day_entries
 
 
-def calculate_daily_hours(entries: List[TimeEntry]):
+def calculate_daily_hours(entries: Iterable[TimeEntry]):
     return sum(entry["duration"] for entry in entries) / 60 / 60
 
 
