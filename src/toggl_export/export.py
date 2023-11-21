@@ -1,28 +1,27 @@
-from collections import OrderedDict, defaultdict
+import os
+from collections import defaultdict
 from datetime import datetime
 from itertools import chain
-from pprint import pprint
-from typing import List
-import os
+from typing import Iterable
 
 import requests
-from requests.auth import HTTPBasicAuth
 from dotenv import load_dotenv
+from requests.auth import HTTPBasicAuth
 from rich import print as rprint
 
 from toggl_export.arguments import init_arguments
 from toggl_export.models import TimeEntry
 
 load_dotenv()
-TOKEN = os.getenv("API_TOKEN")
-PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR")
-WORKSPACE_ID = int(os.getenv("WORKSPACE_ID"))
+TOKEN = os.getenv("API_TOKEN") or ""
+PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR") or "|"
+WORKSPACE_ID = os.getenv("WORKSPACE_ID")
 
 API_BASE_URL = "https://api.track.toggl.com/api/v9/me"
 TIME_ENTRIES_ENDPOINT = "time_entries"
 
 
-def get_time_entries(start_date, end_date) -> List[TimeEntry]:
+def get_time_entries(start_date, end_date) -> list[TimeEntry]:
     start_datetime = datetime.fromisoformat(start_date).astimezone().isoformat()
     end_datetime = datetime.fromisoformat(end_date).astimezone().isoformat()
     range = {
@@ -41,11 +40,17 @@ def get_time_entries(start_date, end_date) -> List[TimeEntry]:
     else:
         rprint(f"[red]Status: {request.status_code}")
         request.raise_for_status()
+        raise Exception("Error retrieving time entries!")
 
-def filter_by_workspace(entries: List[TimeEntry]):
-    return [entry for entry in entries if entry["workspace_id"] == WORKSPACE_ID]
 
-def group_by_day(entries: List[TimeEntry]):
+def filter_by_workspace(entries: list[TimeEntry]):
+    if WORKSPACE_ID is None:
+        return entries
+
+    return [entry for entry in entries if entry["workspace_id"] == int(WORKSPACE_ID)]
+
+
+def group_by_day(entries: list[TimeEntry]):
     day_entries = defaultdict(list)
     for entry in entries:
         start_day = entry["start"][:10]
@@ -53,11 +58,11 @@ def group_by_day(entries: List[TimeEntry]):
     return day_entries
 
 
-def calculate_daily_hours(entries: List[TimeEntry]):
+def calculate_daily_hours(entries: Iterable[TimeEntry]):
     return sum(entry["duration"] for entry in entries) / 60 / 60
 
 
-def group_by_project(entries: List[TimeEntry]):
+def group_by_project(entries: list[TimeEntry]):
     project_entries = defaultdict(list)
     for entry in entries:
         project = entry["project_id"]
@@ -65,7 +70,7 @@ def group_by_project(entries: List[TimeEntry]):
     return project_entries
 
 
-def print_entries(day: str, projects_entries: dict[int, List[TimeEntry]]):
+def print_entries(day: str, projects_entries: dict[int, list[TimeEntry]]):
     day_hours = calculate_daily_hours(chain(*projects_entries.values()))
     rprint(f"[yellow bold]--- {day}: {day_hours}h ---")
     for project_entries in projects_entries.values():

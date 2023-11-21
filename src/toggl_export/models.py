@@ -1,4 +1,4 @@
-from typing import List, TypedDict
+from typing import TypedDict
 
 
 class TimeEntry(TypedDict):
@@ -10,5 +10,5 @@ class TimeEntry(TypedDict):
     stop: str
     duration: int
     description: str
-    tags: List[str]
+    tags: list[str]
     at: str

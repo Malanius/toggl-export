@@ -5,18 +5,20 @@ description = ""
 authors = ["Malanius Privierre <malaniusprivierre@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.12"
 requests = "^2.27.1"
 python-dotenv = "^0.20.0"
 rich = "^12.5.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.1"
-black = {version = "^22.3.0", allow-prereleases = true}
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.1.6"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-export = "toggl_export.export:main"
+toggl-export = "toggl_export.export:main"
