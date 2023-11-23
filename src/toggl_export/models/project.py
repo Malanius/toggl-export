@@ -13,11 +13,12 @@ class Project:
     id: int
     name: str
     time_worked: int = 0
-    entries: list[TimeEntry] = field(default_factory=list)
+    tasks: set[str] = field(default_factory=set)
 
     def add_entry(self, entry: TimeEntry):
         self.time_worked += entry["duration"]
-        self.entries.append(entry)
+        task_description = self._get_task_description(entry)
+        self.tasks.add(task_description)
         logger.debug(f"Added project entry: {entry['description']}")
 
     @property
@@ -26,14 +27,10 @@ class Project:
 
     def print(self):
         rprint(f"[cyan]{self.name}: {self.worked_hours}h")
-        tasks_set = set()
 
-        for entry in self.entries:
-            full_description = entry["description"]
-            task_description = full_description[
-                full_description.rfind(config.PROJECT_SEPARATOR) :
-            ]
-            tasks_set.add(task_description)
-
-        for task in tasks_set:
+        for task in self.tasks:
             print(f"{task}")
+
+    def _get_task_description(self, entry: TimeEntry):
+        full_description = entry["description"]
+        return full_description[full_description.rfind(config.PROJECT_SEPARATOR) :]
