@@ -16,13 +16,19 @@ def validate_start_before_end(start, end):
         raise ValueError(f"Start date {start} is after end date {end}")
 
 
+def validate_dates(start, end):
+    validate_date(start)
+    validate_date(end)
+    validate_start_before_end(start, end)
+
+
 def init_arguments():
     parser = argparse.ArgumentParser(prog="export", description="Toggl exporter")
     today = date.today().isoformat()
-    parser.add_argument("-s", "--start", help="Start date", required=False, default=today)
+    parser.add_argument(
+        "-s", "--start", help="Start date", required=False, default=today
+    )
     parser.add_argument("-e", "--end", help="End date", required=False, default=today)
     args = parser.parse_args()
-    validate_date(args.start)
-    validate_date(args.end)
-    validate_start_before_end(args.start, args.end)
+    validate_dates(args.start, args.end)
     return args
