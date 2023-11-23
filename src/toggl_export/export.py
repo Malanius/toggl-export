@@ -1,5 +1,5 @@
 import sys
-from datetime import datetime
+from datetime import date, datetime
 
 import requests
 from loguru import logger
@@ -43,10 +43,11 @@ def filter_by_workspace(entries: list[TimeEntry], workspace_id: str) -> list[Tim
     return [entry for entry in entries if entry["workspace_id"] == int(workspace_id)]
 
 
-def convert_to_eod(date):
-    return datetime.combine(
-        datetime.fromisoformat(date), datetime.max.time()
-    ).isoformat()
+def convert_to_sod(date: date):
+    return datetime.combine(date, datetime.min.time()).isoformat()
+
+def convert_to_eod(date: date):
+    return datetime.combine(date, datetime.max.time()).isoformat()
 
 
 workdays: dict[str, Workday] = {}
@@ -54,7 +55,7 @@ workdays: dict[str, Workday] = {}
 
 def main():
     args = init_arguments()
-    start = args.start
+    start = convert_to_sod(args.start)
     end = convert_to_eod(args.end)
     entries = get_time_entries(start, end)
 
