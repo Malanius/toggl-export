@@ -5,6 +5,8 @@ from rich import print as rprint
 from toggl_export import config
 from toggl_export.models.time_entry import TimeEntry
 
+SECONDS_IN_HOUR = 3600
+
 
 @dataclass
 class Project:
@@ -20,7 +22,7 @@ class Project:
 
     @property
     def worked_hours(self):
-        return self.time_worked / 60 / 60
+        return self.time_worked / SECONDS_IN_HOUR
 
     def print(self):
         rprint(f"[cyan]{self.name}: {self.worked_hours}h")
