@@ -20,14 +20,7 @@ class Workday:
 
         project_id = entry["project_id"]
         if project_id not in self.worked_projects:
-            project_name = entry["description"][
-                : entry["description"].find(config.PROJECT_SEPARATOR)
-            ]
-            self.worked_projects[project_id] = Project(
-                id=project_id,
-                name=project_name,
-            )
-            logger.debug(f"Created new project {project_name} for workday {self.date}")
+            self._create_project(entry)
 
         self.worked_projects[project_id].add_entry(entry)
         logger.debug(f"Added entry to project {self.worked_projects[project_id].name}")
@@ -41,3 +34,14 @@ class Workday:
         for project in self.worked_projects.values():
             project.print()
             print("\n")
+
+    def _create_project(self, entry: TimeEntry):
+        project_id = entry["project_id"]
+        project_name = entry["description"][
+            : entry["description"].find(config.PROJECT_SEPARATOR)
+        ]
+        self.worked_projects[project_id] = Project(
+            id=project_id,
+            name=project_name,
+        )
+        logger.debug(f"Created new project {project_name} for workday {self.date}")
