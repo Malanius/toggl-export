@@ -39,12 +39,17 @@ def get_time_entries(start_date, end_date) -> list[TimeEntry]:
         raise Exception("Error retrieving time entries!")
 
 
+def remove_running_entries(entries: list[TimeEntry]) -> list[TimeEntry]:
+    return [entry for entry in entries if entry["duration"] > 0]
+
+
 def filter_by_workspace(entries: list[TimeEntry], workspace_id: str) -> list[TimeEntry]:
     return [entry for entry in entries if entry["workspace_id"] == int(workspace_id)]
 
 
 def convert_to_sod(date: date):
     return datetime.combine(date, datetime.min.time()).isoformat()
+
 
 def convert_to_eod(date: date):
     return datetime.combine(date, datetime.max.time()).isoformat()
@@ -58,6 +63,8 @@ def main():
     start = convert_to_sod(args.start)
     end = convert_to_eod(args.end)
     entries = get_time_entries(start, end)
+
+    entries = remove_running_entries(entries)
 
     if config.WORKSPACE_ID:
         entries = filter_by_workspace(entries, config.WORKSPACE_ID)
