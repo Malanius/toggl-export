@@ -18,11 +18,12 @@ class Project:
         self.entries.append(entry)
         logger.debug(f"Added project entry: {entry['description']}")
 
-    def _work_hours(self):
+    @property
+    def worked_hours(self):
         return self.time_worked / 60 / 60
 
     def print(self):
-        rprint(f"[cyan]{self.name}: {self._work_hours()}h")
+        rprint(f"[cyan]{self.name}: {self.worked_hours}h")
         tasks_set = set()
 
         for entry in self.entries:

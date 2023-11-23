@@ -30,11 +30,12 @@ class Workday:
         self.worked_projects[project_id].add_entry(entry)
         logger.debug(f"Added entry to project {self.worked_projects[project_id].name}")
 
-    def _work_hours(self):
+    @property
+    def worked_hours(self):
         return self.time_worked / 60 / 60
 
     def print(self):
-        rprint(f"[yellow bold]--- {self.date}: {self._work_hours():.2f}h ---")
+        rprint(f"[yellow bold]--- {self.date}: {self.worked_hours:.2f}h ---")
         for project in self.worked_projects.values():
             project.print()
             print("\n")
