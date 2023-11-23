@@ -39,11 +39,8 @@ def get_time_entries(start_date, end_date) -> list[TimeEntry]:
         raise Exception("Error retrieving time entries!")
 
 
-def filter_by_workspace(entries: list[TimeEntry]):
-    if config.WORKSPACE_ID is None:
-        return entries
-
-    return [entry for entry in entries if entry["workspace_id"] == int(config.WORKSPACE_ID)]
+def filter_by_workspace(entries: list[TimeEntry], workspace_id: str) -> list[TimeEntry]:
+    return [entry for entry in entries if entry["workspace_id"] == int(workspace_id)]
 
 
 def convert_to_eod(date):
@@ -60,12 +57,14 @@ def main():
     start = args.start
     end = convert_to_eod(args.end)
     entries = get_time_entries(start, end)
-    filtered_entries = filter_by_workspace(entries)
-    sorted_entries = sorted(filtered_entries, key=lambda entry: entry["start"])
+
+    if config.WORKSPACE_ID:
+        entries = filter_by_workspace(entries, config.WORKSPACE_ID)
+
+    sorted_entries = sorted(entries, key=lambda entry: entry["start"])
 
     for entry in sorted_entries:
         day = entry["start"][:10]
-
         if day not in workdays:
             workday = Workday(date=day)
             workdays[day] = workday
