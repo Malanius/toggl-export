@@ -1,27 +1,20 @@
-import os
 import sys
 from datetime import datetime
 
 import requests
-from dotenv import load_dotenv
 from loguru import logger
 from requests.auth import HTTPBasicAuth
 
+from toggl_export import config
 from toggl_export.arguments import init_arguments
 from toggl_export.models.time_entry import TimeEntry
 from toggl_export.models.workday import Workday
-
-load_dotenv()
-TOKEN = os.getenv("API_TOKEN") or ""
-PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR") or " | "
-WORKSPACE_ID = os.getenv("WORKSPACE_ID")
-LOG_LEVEL = os.getenv("LOG_LEVEL") or "INFO"
 
 API_BASE_URL = "https://api.track.toggl.com/api/v9/me"
 TIME_ENTRIES_ENDPOINT = "time_entries"
 
 logger.remove()
-logger.add(sys.stderr, level=LOG_LEVEL)
+logger.add(sys.stderr, level=config.LOG_LEVEL)
 
 
 def get_time_entries(start_date, end_date) -> list[TimeEntry]:
@@ -34,7 +27,7 @@ def get_time_entries(start_date, end_date) -> list[TimeEntry]:
     request = requests.get(
         f"{API_BASE_URL}/{TIME_ENTRIES_ENDPOINT}",
         params=range,
-        auth=HTTPBasicAuth(TOKEN, "api_token"),
+        auth=HTTPBasicAuth(config.TOKEN, "api_token"),
     )
     logger.debug(f"Url: {request.url}")
     if request.ok:
@@ -47,10 +40,10 @@ def get_time_entries(start_date, end_date) -> list[TimeEntry]:
 
 
 def filter_by_workspace(entries: list[TimeEntry]):
-    if WORKSPACE_ID is None:
+    if config.WORKSPACE_ID is None:
         return entries
 
-    return [entry for entry in entries if entry["workspace_id"] == int(WORKSPACE_ID)]
+    return [entry for entry in entries if entry["workspace_id"] == int(config.WORKSPACE_ID)]
 
 
 def convert_to_eod(date):

@@ -1,12 +1,10 @@
-import os
 from dataclasses import dataclass, field
 
 from loguru import logger
 from rich import print as rprint
+from toggl_export import config
 from toggl_export.models.project import Project
 from toggl_export.models.time_entry import TimeEntry
-
-PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR") or " | "
 
 
 @dataclass
@@ -21,7 +19,7 @@ class Workday:
         project_id = entry["project_id"]
         if project_id not in self.worked_projects:
             project_name = entry["description"][
-                : entry["description"].find(PROJECT_SEPARATOR)
+                : entry["description"].find(config.PROJECT_SEPARATOR)
             ]
             self.worked_projects[project_id] = Project(
                 id=project_id,

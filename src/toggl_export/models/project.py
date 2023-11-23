@@ -1,11 +1,9 @@
-import os
 from dataclasses import dataclass, field
 
 from loguru import logger
 from rich import print as rprint
+from toggl_export import config
 from toggl_export.models.time_entry import TimeEntry
-
-PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR") or " | "
 
 
 @dataclass
@@ -30,7 +28,7 @@ class Project:
         for entry in self.entries:
             full_description = entry["description"]
             task_description = full_description[
-                full_description.rfind(PROJECT_SEPARATOR) :
+                full_description.rfind(config.PROJECT_SEPARATOR) :
             ]
             tasks_set.add(task_description)
 
