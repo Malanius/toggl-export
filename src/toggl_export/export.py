@@ -58,6 +58,10 @@ def convert_to_eod(date: date):
 workdays: dict[str, Workday] = {}
 
 
+def clear_screen():
+    print("\033c", end="", flush=True)
+
+
 def main():
     args = init_arguments()
     start = convert_to_sod(args.start)
@@ -83,8 +87,17 @@ def main():
         workday.add_entry(entry)
         logger.debug(f"Added entry to existing workday: {day}")
 
+    if args.interactive:
+        clear_screen()
+
     for workday in workdays.values():
         workday.print()
+        if args.interactive:
+            try:
+                input()
+            except (KeyboardInterrupt, EOFError):
+                break
+            clear_screen()
 
 
 if __name__ == "__main__":
