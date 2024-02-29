@@ -93,7 +93,10 @@ def main():
     for workday in workdays.values():
         workday.print()
         if args.interactive:
-            input()
+            try:
+                input()
+            except (KeyboardInterrupt, EOFError):
+                break
             clear_screen()
 
 
