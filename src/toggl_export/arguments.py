@@ -26,6 +26,14 @@ def init_arguments():
         default=today,
         type=date.fromisoformat,
     )
+    parser.add_argument(
+        "-i",
+        "--interactive",
+        help="Interactive mode, displays single day at a time",
+        required=False,
+        default=False,
+        action="store_true",
+    )
     args = parser.parse_args()
     validate_start_before_end(args.start, args.end)
     return args
