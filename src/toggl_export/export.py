@@ -7,6 +7,7 @@ from requests.auth import HTTPBasicAuth
 
 from toggl_export import config
 from toggl_export.arguments import init_arguments
+from toggl_export.filters import filter_by_workspace
 from toggl_export.models.time_entry import TimeEntry
 from toggl_export.models.workday import Workday
 
@@ -41,10 +42,6 @@ def get_time_entries(start_date, end_date) -> list[TimeEntry]:
 
 def remove_running_entries(entries: list[TimeEntry]) -> list[TimeEntry]:
     return [entry for entry in entries if entry["duration"] > 0]
-
-
-def filter_by_workspace(entries: list[TimeEntry], workspace_id: str) -> list[TimeEntry]:
-    return [entry for entry in entries if entry["workspace_id"] == int(workspace_id)]
 
 
 def convert_to_sod(date: date):
