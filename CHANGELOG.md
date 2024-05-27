@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2024-05-27
+
+[bff23d6](bff23d6e4b1afa52758bcaf7cde97b2074020bb2)...[420584b](420584b2906cbc89ef87975741f5b333012ccd51)
+
+### Features
+
+- Request time entry with metadata ([d42f4ab](d42f4ab1746f237f653a6a315498f7a6a67a0cc9))
+- Add client argument ([1ed24d3](1ed24d3a38f36bc670609fe8bf2dc98317805848))
+- Add client filter function ([a4fb87b](a4fb87b194f9745a44d20e1f5fea48626ed7f10c))
+- Filter by client if provided ([b974d28](b974d28fc07fc8dd104f67737e47247424b32431))
+
+### Refactor
+
+- Move filters to own files ([e5bd2e1](e5bd2e127bd60a57c2d984903719e97c98847e7c))
+
 ## [1.0.0] - 2024-05-23
 
 ### Bug Fixes
@@ -22,6 +37,7 @@ All notable changes to this project will be documented in this file.
 - Update to Python 3.12 ([30c9cb4](30c9cb4fb7041ddbd80972b31d003850d9912f4b))
 - Update pytest and its installation group ([134687f](134687f069710155cbe4f7a95e77ec1f5cb1dc14))
 - Init git cliff ([53ce458](53ce458381f796af67cff9d019fae2c61aa462d1))
+- Create initial changelog and version ([3f6c144](3f6c14478177dfae2dc4317f547d329c522f2f12))
 
 ### Refactor
 
