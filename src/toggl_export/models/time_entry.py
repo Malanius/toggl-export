@@ -1,14 +1,20 @@
 from typing import TypedDict
 
 
+
 class TimeEntry(TypedDict):
-    id: int
-    workspace_id: int
-    project_id: int
+    at: str
     billable: bool
+    client_name: str
+    description: str
+    duration: int
+    duronly: bool
+    id: int
+    project_active: bool
+    project_color: str
+    project_id: int
+    project_name: str
     start: str
     stop: str
-    duration: int
-    description: str
     tags: list[str]
-    at: str
+    workspace_id: int

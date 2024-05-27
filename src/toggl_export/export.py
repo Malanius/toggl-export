@@ -1,5 +1,6 @@
 import sys
 from datetime import date, datetime
+from pprint import pprint
 
 import requests
 from loguru import logger
@@ -21,22 +22,24 @@ logger.add(sys.stderr, level=config.LOG_LEVEL)
 def get_time_entries(start_date, end_date) -> list[TimeEntry]:
     start_datetime = datetime.fromisoformat(start_date).astimezone().isoformat()
     end_datetime = datetime.fromisoformat(end_date).astimezone().isoformat()
-    range = {
+    params = {
         "start_date": f"{start_datetime}",
         "end_date": f"{end_datetime}",
+        "meta": "true",
     }
-    request = requests.get(
+    response = requests.get(
         f"{API_BASE_URL}/{TIME_ENTRIES_ENDPOINT}",
-        params=range,
+        params,
         auth=HTTPBasicAuth(config.TOKEN, "api_token"),
     )
-    logger.debug(f"Url: {request.url}")
-    if request.ok:
-        logger.debug(f"Status: {request.status_code}")
-        return request.json()
+    logger.debug(f"Url: {response.url}")
+    if response.ok:
+        logger.debug(f"Status: {response.status_code}")
+        logger.debug(f"Response: {response.json()}")
+        return response.json()
     else:
-        logger.debug(f"Status: {request.status_code}")
-        request.raise_for_status()
+        logger.debug(f"Status: {response.status_code}")
+        response.raise_for_status()
         raise Exception("Error retrieving time entries!")
 
 
