@@ -1,14 +1,13 @@
 import sys
 from datetime import date, datetime
-from pprint import pprint
 
 import requests
 from loguru import logger
 from requests.auth import HTTPBasicAuth
 
+import toggl_export.filters as filters
 from toggl_export import config
 from toggl_export.arguments import init_arguments
-from toggl_export.filters import filter_by_workspace
 from toggl_export.models.time_entry import TimeEntry
 from toggl_export.models.workday import Workday
 
@@ -71,7 +70,10 @@ def main():
     entries = remove_running_entries(entries)
 
     if config.WORKSPACE_ID:
-        entries = filter_by_workspace(entries, config.WORKSPACE_ID)
+        entries = filters.filter_by_workspace(entries, config.WORKSPACE_ID)
+
+    if args.client:
+        entries = filters.filter_by_client(entries, args.client)
 
     sorted_entries = sorted(entries, key=lambda entry: entry["start"])
 
