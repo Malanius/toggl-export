@@ -27,6 +27,14 @@ def init_arguments():
         type=date.fromisoformat,
     )
     parser.add_argument(
+        "-c",
+        "--client",
+        help="Filter by client name",
+        required=False,
+        default=None,
+        type=str,
+    )
+    parser.add_argument(
         "-i",
         "--interactive",
         help="Interactive mode, displays single day at a time",
