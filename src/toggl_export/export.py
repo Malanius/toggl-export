@@ -5,6 +5,7 @@ import requests
 from loguru import logger
 from requests.auth import HTTPBasicAuth
 
+import toggl_export.filters as filters
 from toggl_export import config
 from toggl_export.arguments import init_arguments
 from toggl_export.models.time_entry import TimeEntry
@@ -20,31 +21,29 @@ logger.add(sys.stderr, level=config.LOG_LEVEL)
 def get_time_entries(start_date, end_date) -> list[TimeEntry]:
     start_datetime = datetime.fromisoformat(start_date).astimezone().isoformat()
     end_datetime = datetime.fromisoformat(end_date).astimezone().isoformat()
-    range = {
+    params = {
         "start_date": f"{start_datetime}",
         "end_date": f"{end_datetime}",
+        "meta": "true",
     }
-    request = requests.get(
+    response = requests.get(
         f"{API_BASE_URL}/{TIME_ENTRIES_ENDPOINT}",
-        params=range,
+        params,
         auth=HTTPBasicAuth(config.TOKEN, "api_token"),
     )
-    logger.debug(f"Url: {request.url}")
-    if request.ok:
-        logger.debug(f"Status: {request.status_code}")
-        return request.json()
+    logger.debug(f"Url: {response.url}")
+    if response.ok:
+        logger.debug(f"Status: {response.status_code}")
+        logger.debug(f"Response: {response.json()}")
+        return response.json()
     else:
-        logger.debug(f"Status: {request.status_code}")
-        request.raise_for_status()
+        logger.debug(f"Status: {response.status_code}")
+        response.raise_for_status()
         raise Exception("Error retrieving time entries!")
 
 
 def remove_running_entries(entries: list[TimeEntry]) -> list[TimeEntry]:
     return [entry for entry in entries if entry["duration"] > 0]
-
-
-def filter_by_workspace(entries: list[TimeEntry], workspace_id: str) -> list[TimeEntry]:
-    return [entry for entry in entries if entry["workspace_id"] == int(workspace_id)]
 
 
 def convert_to_sod(date: date):
@@ -71,7 +70,10 @@ def main():
     entries = remove_running_entries(entries)
 
     if config.WORKSPACE_ID:
-        entries = filter_by_workspace(entries, config.WORKSPACE_ID)
+        entries = filters.filter_by_workspace(entries, config.WORKSPACE_ID)
+
+    if args.client:
+        entries = filters.filter_by_client(entries, args.client)
 
     sorted_entries = sorted(entries, key=lambda entry: entry["start"])
 
