@@ -2,9 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2024-05-31
+
+[e13639d](e13639d34519747aa922c47845155345738dfb31)...[5b9ffdf](5b9ffdffb951589fe6cdc62aef78be207bfd40dc)
+
+### Bug Fixes
+
+- Show an error when time entry is missing client info ([5b9ffdf](5b9ffdffb951589fe6cdc62aef78be207bfd40dc))
+
 ## [1.1.0] - 2024-05-27
 
-[bff23d6](bff23d6e4b1afa52758bcaf7cde97b2074020bb2)...[420584b](420584b2906cbc89ef87975741f5b333012ccd51)
+[bff23d6](bff23d6e4b1afa52758bcaf7cde97b2074020bb2)...[e13639d](e13639d34519747aa922c47845155345738dfb31)
 
 ### Features
 
@@ -12,6 +20,10 @@ All notable changes to this project will be documented in this file.
 - Add client argument ([1ed24d3](1ed24d3a38f36bc670609fe8bf2dc98317805848))
 - Add client filter function ([a4fb87b](a4fb87b194f9745a44d20e1f5fea48626ed7f10c))
 - Filter by client if provided ([b974d28](b974d28fc07fc8dd104f67737e47247424b32431))
+
+### Miscellaneous Tasks
+
+- Update changelog ([e13639d](e13639d34519747aa922c47845155345738dfb31))
 
 ### Refactor
 
