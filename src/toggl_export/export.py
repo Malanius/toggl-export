@@ -1,6 +1,7 @@
 import sys
 from datetime import date, datetime
 
+import pyperclip
 import requests
 from loguru import logger
 from requests.auth import HTTPBasicAuth
@@ -98,6 +99,8 @@ def main():
         console.print(str(workday))
         if args.interactive:
             try:
+                stripped = console.export_text()
+                pyperclip.copy(stripped)
                 input()
             except (KeyboardInterrupt, EOFError):
                 break
