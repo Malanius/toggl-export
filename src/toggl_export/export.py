@@ -4,6 +4,7 @@ from datetime import date, datetime
 import requests
 from loguru import logger
 from requests.auth import HTTPBasicAuth
+from rich.console import Console
 
 import toggl_export.filters as filters
 from toggl_export import config
@@ -62,6 +63,7 @@ def clear_screen():
 
 
 def main():
+    console = Console(record=True)
     args = init_arguments()
     start = convert_to_sod(args.start)
     end = convert_to_eod(args.end)
@@ -93,7 +95,7 @@ def main():
         clear_screen()
 
     for workday in workdays.values():
-        workday.print()
+        console.print(str(workday))
         if args.interactive:
             try:
                 input()
