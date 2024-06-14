@@ -28,12 +28,15 @@ class Workday:
     @property
     def worked_hours(self):
         return self.time_worked / SECONDS_IN_HOUR
+    
+    def __str__(self) -> str:
+        s: str = f"[yellow bold]--- {self.date}: {self.worked_hours:.2f}h ---[/yellow bold]\n"
+        for project in self.worked_projects.values():
+            s = s + str(project)
+        return s
 
     def print(self):
-        rprint(f"[yellow bold]--- {self.date}: {self.worked_hours:.2f}h ---")
-        for project in self.worked_projects.values():
-            project.print()
-            print("\n")
+        rprint(str(self))
 
     def _create_project(self, entry: TimeEntry):
         project_id = entry["project_id"]
