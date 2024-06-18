@@ -96,10 +96,10 @@ def main():
         clear_screen()
 
     for workday in workdays.values():
-        console.print(str(workday))
+        console.print(str(workday).strip())
         if args.interactive:
             try:
-                stripped = console.export_text()
+                stripped = console.export_text().strip()
                 pyperclip.copy(stripped)
                 input()
             except (KeyboardInterrupt, EOFError):
