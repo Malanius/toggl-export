@@ -2,13 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2024-07-21
+
+[bea7d1c](bea7d1c92e73ab11585eaa715127fa1495a48ad6)...[57cef00](57cef006d938955ca0f5473860eb72e2c2fabd3e)
+
+### Features
+
+- Add pyperclip ([1474a18](1474a1878e77d0e3e0723594335cefd748d8cbbf))
+- Add string representation ([b2a020b](b2a020bde2f0166d87ea309536b3efba9a2f90b7))
+- Print entries with rich console ([ea28957](ea289576b7450e32f3f7391af43cb817eb8fc136))
+- Copy current interactive console to clipboard ([4b04542](4b04542e8b4dc7a5cbe07bcb48216d2e173ba448))
+- Strip console and clipboard output ([57cef00](57cef006d938955ca0f5473860eb72e2c2fabd3e))
+
+### Miscellaneous Tasks
+
+- Ruff reformat ([eec887b](eec887bde0be81dd5898e8bb1940215b23e92fb7))
+
 ## [1.1.1] - 2024-05-31
 
-[e13639d](e13639d34519747aa922c47845155345738dfb31)...[5b9ffdf](5b9ffdffb951589fe6cdc62aef78be207bfd40dc)
+[e13639d](e13639d34519747aa922c47845155345738dfb31)...[bea7d1c](bea7d1c92e73ab11585eaa715127fa1495a48ad6)
 
 ### Bug Fixes
 
-- Show an error when time entry is missing client info ([5b9ffdf](5b9ffdffb951589fe6cdc62aef78be207bfd40dc))
+- Show an error when time entry is missing client info ([bea7d1c](bea7d1c92e73ab11585eaa715127fa1495a48ad6))
 
 ## [1.1.0] - 2024-05-27
 
