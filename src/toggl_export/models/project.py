@@ -24,12 +24,18 @@ class Project:
     @property
     def worked_hours(self):
         return self.time_worked / SECONDS_IN_HOUR
-
-    def print(self):
-        rprint(f"[cyan]{self.name}: {self.worked_hours}h")
+    
+    def __str__(self) -> str:
+        s = f"[cyan]{self.name}: {self.worked_hours}h[/cyan]\n"
 
         for task in self.tasks:
-            print(f"{task}")
+            s += f"{task}\n"
+        s += "\n"
+        
+        return s
+
+    def print(self):
+        rprint(self)
 
     def _get_task_description(self, entry: TimeEntry):
         full_description = entry["description"]

@@ -1,7 +1,6 @@
 from typing import TypedDict
 
 
-
 class TimeEntry(TypedDict):
     at: str
     billable: bool
