@@ -95,8 +95,10 @@ def main():
     if args.interactive:
         clear_screen()
 
+    total_time = 0
     for workday in workdays.values():
         console.print(str(workday).strip())
+        total_time += workday.time_worked
         if args.interactive:
             try:
                 stripped = console.export_text().strip()
@@ -105,6 +107,9 @@ def main():
             except (KeyboardInterrupt, EOFError):
                 break
             clear_screen()
+
+    if not args.interactive:
+        console.print(f"\n[green bold]Total time worked: {total_time / 3600:.2f}h")
 
 
 if __name__ == "__main__":

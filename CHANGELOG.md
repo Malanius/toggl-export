@@ -2,9 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2024-09-05
+
+[abef846](abef846bf92e130aa29493cfb48f744f1fb5de0f)...[565caac](565caac596be15c743e9c133bfc6903ecba74ef8)
+
+### Features
+
+- Add total time to non-interactive export ([565caac](565caac596be15c743e9c133bfc6903ecba74ef8))
+
 ## [1.2.0] - 2024-07-21
 
-[bea7d1c](bea7d1c92e73ab11585eaa715127fa1495a48ad6)...[57cef00](57cef006d938955ca0f5473860eb72e2c2fabd3e)
+[bea7d1c](bea7d1c92e73ab11585eaa715127fa1495a48ad6)...[abef846](abef846bf92e130aa29493cfb48f744f1fb5de0f)
 
 ### Features
 
@@ -17,6 +25,7 @@ All notable changes to this project will be documented in this file.
 ### Miscellaneous Tasks
 
 - Ruff reformat ([eec887b](eec887bde0be81dd5898e8bb1940215b23e92fb7))
+- Update changelog ([ecf551a](ecf551aa8452a12a5a18116cfa0959924f310fc7))
 
 ## [1.1.1] - 2024-05-31
 
