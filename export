@@ -1,3 +1,2 @@
 #!/bin/bash
-poetry run toggl-export $@
-
+uv run -q toggl-export $@
