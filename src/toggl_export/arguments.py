@@ -26,8 +26,8 @@ def init_arguments():
     )
     parser.add_argument(
         "-d",
-        "--day",
-        help="Specific day (exclusive with --start and --end)",
+        "--date",
+        help="Specific date (exclusive with --start and --end)",
         required=False,
         type=date.fromisoformat,
     )
@@ -49,11 +49,11 @@ def init_arguments():
     )
     args = parser.parse_args()
 
-    if args.day and (args.start or args.end):
+    if args.date and (args.start or args.end):
         raise ValueError("Day argument is exclusive with start and end")
 
-    if args.day:
-        args.start = args.end = args.day
+    if args.date:
+        args.start = args.end = args.date
     else:
         args.start = args.start or today
         args.end = args.end or today
