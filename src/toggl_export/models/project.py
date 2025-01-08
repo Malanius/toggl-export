@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 
 from loguru import logger
-from rich import print as rprint
+
 from toggl_export import config
 from toggl_export.models.time_entry import TimeEntry
 
@@ -24,18 +24,16 @@ class Project:
     @property
     def worked_hours(self):
         return self.time_worked / SECONDS_IN_HOUR
-    
-    def __str__(self) -> str:
-        s = f"[cyan]{self.name}: {self.worked_hours}h[/cyan]\n"
+
+    def print(self, hide_time) -> str:
+        time_spent = f"{self.worked_hours:.2f}h" if not hide_time else ""
+        s = f"[cyan]{self.name}: {time_spent}[/cyan]\n"
 
         for task in self.tasks:
             s += f"{task}\n"
         s += "\n"
-        
-        return s
 
-    def print(self):
-        rprint(self)
+        return s
 
     def _get_task_description(self, entry: TimeEntry):
         full_description = entry["description"]

@@ -2,13 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.3.0] - 2024-09-05
+## [1.4.0] - 2025-01-08
 
-[abef846](abef846bf92e130aa29493cfb48f744f1fb5de0f)...[565caac](565caac596be15c743e9c133bfc6903ecba74ef8)
+[2196fa4](2196fa47daa8aba5eab3c48fa57ae0f39a423e0f)...[8f2fdd2](8f2fdd25a705efc05dee972c01fb4872e7e656d7)
 
 ### Features
 
-- Add total time to non-interactive export ([565caac](565caac596be15c743e9c133bfc6903ecba74ef8))
+- Add argument to export specific day only ([d78aaf4](d78aaf4a95c9afb10208b7838fa6d67ef1f6edd5))
+- Add argument to export single day only ([c026934](c026934a5a4a6c86dd53b6e93162a90c74da3ead))
+- Add argument to skip header from clipboard output ([8d58030](8d58030076b929a0f312a9e6e2d183916e02ddce))
+- Add argument to hide time spent ([8f2fdd2](8f2fdd25a705efc05dee972c01fb4872e7e656d7))
+
+### Miscellaneous Tasks
+
+- Switch project and package management to uv ([3021ebd](3021ebd58d67770411ba85dccfcbc4476660a1cb))
+- Use uv run in export bash script ([150d7ab](150d7ab3199a76db12a060caff0c5bf91deff5c6))
+
+### Testing
+
+- Add pytest-mock ([bf7296d](bf7296d64c7bd91e12cfe3c0c8cf5de2b69778c2))
+
+## [1.3.0] - 2024-09-05
+
+[abef846](abef846bf92e130aa29493cfb48f744f1fb5de0f)...[2196fa4](2196fa47daa8aba5eab3c48fa57ae0f39a423e0f)
+
+### Features
+
+- Add total time to non-interactive export ([2196fa4](2196fa47daa8aba5eab3c48fa57ae0f39a423e0f))
 
 ## [1.2.0] - 2024-07-21
 

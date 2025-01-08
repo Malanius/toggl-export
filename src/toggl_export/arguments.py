@@ -47,7 +47,13 @@ def init_arguments():
         default=False,
         action="store_true",
     )
-    # TODO: add param to hide time spent in ineractive mode
+    parser.add_argument(
+        "--hide-time",
+        help="Hide time spent for day and project",
+        required=False,
+        default=False,
+        action="store_true",
+    )
     parser.add_argument(
         "--skip-header",
         help="Skip header in clipboard output",

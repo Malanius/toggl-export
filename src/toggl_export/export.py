@@ -97,7 +97,7 @@ def main():
 
     total_time = 0
     for workday in workdays.values():
-        console.print(str(workday).strip())
+        console.print(workday.print(args.hide_time).strip())
         total_time += workday.time_worked
         if args.interactive:
             try:
