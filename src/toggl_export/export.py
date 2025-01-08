@@ -102,6 +102,8 @@ def main():
         if args.interactive:
             try:
                 stripped = console.export_text().strip()
+                if args.skip_header:
+                    stripped = "\n".join(stripped.split("\n")[1:])
                 pyperclip.copy(stripped)
                 input()
             except (KeyboardInterrupt, EOFError):
