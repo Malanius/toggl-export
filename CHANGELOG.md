@@ -2,16 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2025-06-30
+
+[fd7a12a](fd7a12aa9e92a63e1c304d1358c037943f9fcfd1)...[a7ab4ba](a7ab4babc4b0491f6bf7f89ee4a36e2ad96777b6)
+
+### Features
+
+- Add entry date to validation error message ([a7ab4ba](a7ab4babc4b0491f6bf7f89ee4a36e2ad96777b6))
+
 ## [1.4.0] - 2025-01-08
 
-[2196fa4](2196fa47daa8aba5eab3c48fa57ae0f39a423e0f)...[8f2fdd2](8f2fdd25a705efc05dee972c01fb4872e7e656d7)
+[2196fa4](2196fa47daa8aba5eab3c48fa57ae0f39a423e0f)...[fd7a12a](fd7a12aa9e92a63e1c304d1358c037943f9fcfd1)
 
 ### Features
 
 - Add argument to export specific day only ([d78aaf4](d78aaf4a95c9afb10208b7838fa6d67ef1f6edd5))
 - Add argument to export single day only ([c026934](c026934a5a4a6c86dd53b6e93162a90c74da3ead))
 - Add argument to skip header from clipboard output ([8d58030](8d58030076b929a0f312a9e6e2d183916e02ddce))
-- Add argument to hide time spent ([8f2fdd2](8f2fdd25a705efc05dee972c01fb4872e7e656d7))
+- Add argument to hide time spent ([fd7a12a](fd7a12aa9e92a63e1c304d1358c037943f9fcfd1))
 
 ### Miscellaneous Tasks
 
