@@ -121,7 +121,7 @@ def main():
 
     if not args.interactive:
         console.print("[yellow bold]## Total[/yellow bold]\n")
-        console.print(f"[green bold]Total time worked: {total_time / 3600:.2f}h")
+        console.print(f"[green bold]**Total time worked:** {total_time / 3600:.2f}h")
 
 
 if __name__ == "__main__":
