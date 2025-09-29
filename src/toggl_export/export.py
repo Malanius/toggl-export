@@ -107,10 +107,11 @@ def main():
         total_time += workday.time_worked
         if args.interactive:
             try:
+                # FIXME: could probably be done in a neater way than having to strip stripped
                 stripped = console.export_text().strip()
                 if args.skip_header:
                     stripped = "\n".join(stripped.split("\n")[1:])
-                pyperclip.copy(stripped)
+                pyperclip.copy(stripped.strip())
                 input()
             except (KeyboardInterrupt, EOFError):
                 break
