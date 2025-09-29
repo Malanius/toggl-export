@@ -95,6 +95,12 @@ def main():
     if args.interactive:
         clear_screen()
 
+    if not args.interactive:
+        console.print(
+            f"[yellow bold]# Report {args.start} - {args.end}[/yellow bold]\n"
+        )
+        console.print("[yellow bold]## Entries[/yellow bold]\n")
+
     total_time = 0
     for workday in workdays.values():
         console.print(workday.print(args.hide_time).strip())
@@ -109,9 +115,12 @@ def main():
             except (KeyboardInterrupt, EOFError):
                 break
             clear_screen()
+        else:
+            console.print()
 
     if not args.interactive:
-        console.print(f"\n[green bold]Total time worked: {total_time / 3600:.2f}h")
+        console.print("[yellow bold]## Total[/yellow bold]\n")
+        console.print(f"[green bold]Total time worked: {total_time / 3600:.2f}h")
 
 
 if __name__ == "__main__":

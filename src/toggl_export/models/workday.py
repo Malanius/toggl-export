@@ -30,8 +30,8 @@ class Workday:
         return self.time_worked / SECONDS_IN_HOUR
 
     def print(self, hide_time) -> str:
-        worked_hours = f"{self.worked_hours:.2f}h" if not hide_time else ""
-        s: str = f"[yellow bold]--- {self.date}: {worked_hours} ---[/yellow bold]\n"
+        worked_hours = f": {self.worked_hours:.2f}h" if not hide_time else ""
+        s: str = f"[yellow bold]### {self.date}{worked_hours} [/yellow bold]\n\n"
         for project in self.worked_projects.values():
             s = s + project.print(hide_time)
         return s
