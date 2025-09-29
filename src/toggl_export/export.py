@@ -119,7 +119,7 @@ def main():
         else:
             console.print()
 
-    if not args.interactive:
+    if not args.interactive and not args.hide_time:
         console.print("[yellow bold]## Total[/yellow bold]\n")
         console.print(f"[green bold]**Total time worked:** {total_time / 3600:.2f}h")
 
