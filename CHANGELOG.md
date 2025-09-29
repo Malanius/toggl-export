@@ -2,13 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0] - 2025-09-29
+
+[9cd3fca](9cd3fcaaf519c0f2691a5a4c5d52d9dbf7225f7f)...[10c6001](10c60014ee58206ca8f3d902087b925232eebc52)
+
+### Bug Fixes
+
+- Properly strip output for clipboard ([319d6b1](319d6b122e6ad5c428fcf5eed67e7c7d20bfa124))
+- Do not put space after entry header ([bc9f9b3](bc9f9b3eea9fdf045a3f1dc79dfffb60802dcbb8))
+- Prevent empty space in project header if work time is hidden ([cc79e5f](cc79e5f7f2066f971fcb2d989d9ca04c1e499cc1))
+- Properly bold worked time ([12f879a](12f879a937b9ffe23b2237a69e70053da339a3c6))
+- Do not show total worked time when time should be hidden ([10c6001](10c60014ee58206ca8f3d902087b925232eebc52))
+
+### Features
+
+- Export to markdownish output ([1765ebd](1765ebd19cf330dafb64b1317c579a9e97623f8b))
+
+### Miscellaneous Tasks
+
+- Update to python 3.13 ([62dec02](62dec024ac2a6cdb190bb11c81496fd446c01d5d))
+- Use proper dev dependency group ([078f1a9](078f1a97846fa270880d6393bd7d4136ffe42385))
+- Update all deps ([a7043d8](a7043d81d02e93799ac42642211c2bf75ca44488))
+
 ## [1.5.0] - 2025-06-30
 
-[fd7a12a](fd7a12aa9e92a63e1c304d1358c037943f9fcfd1)...[a7ab4ba](a7ab4babc4b0491f6bf7f89ee4a36e2ad96777b6)
+[fd7a12a](fd7a12aa9e92a63e1c304d1358c037943f9fcfd1)...[9cd3fca](9cd3fcaaf519c0f2691a5a4c5d52d9dbf7225f7f)
 
 ### Features
 
 - Add entry date to validation error message ([a7ab4ba](a7ab4babc4b0491f6bf7f89ee4a36e2ad96777b6))
+
+### Miscellaneous Tasks
+
+- Update changelog ([9cd3fca](9cd3fcaaf519c0f2691a5a4c5d52d9dbf7225f7f))
 
 ## [1.4.0] - 2025-01-08
 
