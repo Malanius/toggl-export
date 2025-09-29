@@ -26,8 +26,8 @@ class Project:
         return self.time_worked / SECONDS_IN_HOUR
 
     def print(self, hide_time) -> str:
-        time_spent = f"{self.worked_hours:.2f}h" if not hide_time else ""
-        s = f"[cyan]{self.name}: {time_spent}[/cyan]\n"
+        time_spent = f": {self.worked_hours:.2f}h" if not hide_time else ""
+        s = f"[cyan]{self.name}{time_spent}[/cyan]\n"
 
         for task in self.tasks:
             s += f"{task}\n"
