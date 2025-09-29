@@ -22,9 +22,9 @@ toggl-export = "toggl_export.export:main"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.uv]
-dev-dependencies = [
-    "pytest-mock>=3.14.0",
-    "pytest>=8.3.3",
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-mock>=3.15.1",
     "ruff>=0.6.8",
 ]
