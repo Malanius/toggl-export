@@ -2,9 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.0] - 2025-11-28
+
+[c2e4d5f](c2e4d5f9d94602eafefb49ae6861204c1ed40429)...[8801d3e](8801d3ebf63aa011e47be0f1734623bf94e68f21)
+
+### Features
+
+- Include time for each tracked entry ([8801d3e](8801d3ebf63aa011e47be0f1734623bf94e68f21))
+
+### Miscellaneous Tasks
+
+- Remove unused import ([cd07a39](cd07a396096932310e7f8eb747adaa0c8950bf2f))
+
 ## [1.6.0] - 2025-09-29
 
-[9cd3fca](9cd3fcaaf519c0f2691a5a4c5d52d9dbf7225f7f)...[10c6001](10c60014ee58206ca8f3d902087b925232eebc52)
+[9cd3fca](9cd3fcaaf519c0f2691a5a4c5d52d9dbf7225f7f)...[c2e4d5f](c2e4d5f9d94602eafefb49ae6861204c1ed40429)
 
 ### Bug Fixes
 
@@ -23,6 +35,7 @@ All notable changes to this project will be documented in this file.
 - Update to python 3.13 ([62dec02](62dec024ac2a6cdb190bb11c81496fd446c01d5d))
 - Use proper dev dependency group ([078f1a9](078f1a97846fa270880d6393bd7d4136ffe42385))
 - Update all deps ([a7043d8](a7043d81d02e93799ac42642211c2bf75ca44488))
+- Release 1.6.0 ([c2e4d5f](c2e4d5f9d94602eafefb49ae6861204c1ed40429))
 
 ## [1.5.0] - 2025-06-30
 
