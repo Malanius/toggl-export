@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 
 from loguru import logger
-from rich import print as rprint
 from toggl_export import config
 from toggl_export.models.project import Project
 from toggl_export.models.time_entry import TimeEntry
