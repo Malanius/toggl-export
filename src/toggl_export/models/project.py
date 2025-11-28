@@ -13,12 +13,13 @@ class Project:
     id: int
     name: str
     time_worked: int = 0
-    tasks: set[str] = field(default_factory=set)
+    tasks: set[tuple[str, int]] = field(default_factory=set)
 
     def add_entry(self, entry: TimeEntry):
-        self.time_worked += entry["duration"]
+        duration = entry["duration"]
+        self.time_worked += duration
         task_description = self._get_task_description(entry)
-        self.tasks.add(task_description)
+        self.tasks.add((task_description, duration))
         logger.debug(f"Added project entry: {entry['description']}")
 
     @property
@@ -30,7 +31,10 @@ class Project:
         s = f"[cyan]{self.name}{time_spent}[/cyan]\n"
 
         for task in self.tasks:
-            s += f"{task}\n"
+            s += f"{task[0]}"
+            if not hide_time:
+                s += f": [magenta]{task[1] / SECONDS_IN_HOUR:.2f}h[/magentagit add]"
+            s += "\n"
         s += "\n"
 
         return s
