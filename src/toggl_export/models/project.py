@@ -33,7 +33,7 @@ class Project:
         for task in self.tasks:
             s += f"{task[0]}"
             if not hide_time:
-                s += f": [magenta]{task[1] / SECONDS_IN_HOUR:.2f}h[/magentagit add]"
+                s += f": [magenta]{task[1] / SECONDS_IN_HOUR:.2f}h[/magenta]"
             s += "\n"
         s += "\n"
 
