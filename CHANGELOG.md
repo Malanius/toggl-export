@@ -2,9 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.7.1] - 2025-12-12
+
+[7c257a0](7c257a04b68d1319b7ee957363c33811bf4425ad)...[0709bb6](0709bb6967bac8c54642e01c56450e81c21eb22c)
+
+### Bug Fixes
+
+- Remove stray git command in rich markup ([0709bb6](0709bb6967bac8c54642e01c56450e81c21eb22c))
+
 ## [1.7.0] - 2025-11-28
 
-[c2e4d5f](c2e4d5f9d94602eafefb49ae6861204c1ed40429)...[8801d3e](8801d3ebf63aa011e47be0f1734623bf94e68f21)
+[c2e4d5f](c2e4d5f9d94602eafefb49ae6861204c1ed40429)...[7c257a0](7c257a04b68d1319b7ee957363c33811bf4425ad)
 
 ### Features
 
@@ -13,6 +21,7 @@ All notable changes to this project will be documented in this file.
 ### Miscellaneous Tasks
 
 - Remove unused import ([cd07a39](cd07a396096932310e7f8eb747adaa0c8950bf2f))
+- Update changelog ([7c257a0](7c257a04b68d1319b7ee957363c33811bf4425ad))
 
 ## [1.6.0] - 2025-09-29
 
