@@ -1,3 +1,4 @@
+from collections import defaultdict
 from dataclasses import dataclass, field
 
 from loguru import logger
@@ -13,13 +14,13 @@ class Project:
     id: int
     name: str
     time_worked: int = 0
-    tasks: set[tuple[str, int]] = field(default_factory=set)
+    tasks: dict[str, int] = field(default_factory=lambda: defaultdict(int))
 
     def add_entry(self, entry: TimeEntry):
         duration = entry["duration"]
         self.time_worked += duration
         task_description = self._get_task_description(entry)
-        self.tasks.add((task_description, duration))
+        self.tasks[task_description] += duration
         logger.debug(f"Added project entry: {entry['description']}")
 
     @property
@@ -30,10 +31,10 @@ class Project:
         time_spent = f": {self.worked_hours:.2f}h" if not hide_time else ""
         s = f"[cyan]{self.name}{time_spent}[/cyan]\n"
 
-        for task in self.tasks:
-            s += f"{task[0]}"
+        for task_name, worked_seconds in self.tasks.items():
+            s += f"{task_name}"
             if not hide_time:
-                s += f": [magenta]{task[1] / SECONDS_IN_HOUR:.2f}h[/magenta]"
+                s += f": [magenta]{worked_seconds / SECONDS_IN_HOUR:.2f}h[/magenta]"
             s += "\n"
         s += "\n"
 
