@@ -2,13 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.0] - 2026-01-25
+
+[c8b380a](c8b380aa725ffde30f0dd870f9a52d692b5ddba9)...[704698f](704698fa76d435eade966102c10d3118799397fc)
+
+### Features
+
+- Merge simmilar time entries ([704698f](704698fa76d435eade966102c10d3118799397fc))
+
 ## [1.7.1] - 2025-12-12
 
-[7c257a0](7c257a04b68d1319b7ee957363c33811bf4425ad)...[0709bb6](0709bb6967bac8c54642e01c56450e81c21eb22c)
+[7c257a0](7c257a04b68d1319b7ee957363c33811bf4425ad)...[c8b380a](c8b380aa725ffde30f0dd870f9a52d692b5ddba9)
 
 ### Bug Fixes
 
 - Remove stray git command in rich markup ([0709bb6](0709bb6967bac8c54642e01c56450e81c21eb22c))
+
+### Miscellaneous Tasks
+
+- Release 1.7.1 ([c8b380a](c8b380aa725ffde30f0dd870f9a52d692b5ddba9))
 
 ## [1.7.0] - 2025-11-28
 
