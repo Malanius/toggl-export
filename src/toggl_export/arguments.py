@@ -1,5 +1,5 @@
 import argparse
-from datetime import date
+from datetime import date, timedelta
 
 
 def validate_start_before_end(start: date, end: date):
@@ -10,6 +10,8 @@ def validate_start_before_end(start: date, end: date):
 def init_arguments():
     parser = argparse.ArgumentParser(prog="export", description="Toggl exporter")
     today = date.today()
+    week_start = today - timedelta(days=today.weekday())
+    week_end = week_start + timedelta(days=6)
     parser.add_argument(
         "-s",
         "--start",
@@ -69,8 +71,8 @@ def init_arguments():
     if args.date:
         args.start = args.end = args.date
     else:
-        args.start = args.start or today
-        args.end = args.end or today
+        args.start = args.start or week_start
+        args.end = args.end or week_end
 
     validate_start_before_end(args.start, args.end)
     return args
