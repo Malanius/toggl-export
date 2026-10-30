@@ -1,4 +1,6 @@
 {
   "python.analysis.autoImportCompletions": true,
-  "python.analysis.typeCheckingMode": "basic"
+  "python.analysis.typeCheckingMode": "basic",
+  "git.enabled": false,
+  "python.terminal.useEnvFile": true
 }

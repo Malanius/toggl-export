@@ -122,6 +122,7 @@ def main():
     if not args.interactive and not args.hide_time:
         console.print("[yellow bold]## Total[/yellow bold]\n")
         console.print(f"[green bold]**Total time worked:** {total_time / 3600:.2f}h")
+        console.print(f"[green bold]**Total MDs worked:** {total_time / 3600 / config.HOURS_IN_MD:.2f}")
 
 
 if __name__ == "__main__":

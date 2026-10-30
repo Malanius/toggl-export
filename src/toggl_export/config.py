@@ -8,3 +8,4 @@ LOG_LEVEL = os.getenv("LOG_LEVEL") or "INFO"
 PROJECT_SEPARATOR = os.getenv("PROJECT_SEPARATOR") or " | "
 TOKEN = os.getenv("API_TOKEN") or ""
 WORKSPACE_ID = os.getenv("WORKSPACE_ID")
+HOURS_IN_MD = int(os.getenv("HOURS_IN_MD") or 8)
